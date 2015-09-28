@@ -407,37 +407,31 @@ var resizePizzas = function(size) {
     switch(size) {
       case "1":
         document.querySelector("#pizzaSize").innerHTML = "Small";
-        return;
+        return 25;
       case "2":
         document.querySelector("#pizzaSize").innerHTML = "Medium";
-        return;
+        return 33.3;
       case "3":
         document.querySelector("#pizzaSize").innerHTML = "Large";
-        return;
+        return 50;
       default:
         console.log("bug in changeSliderLabel");
     }
   }
 
-  changeSliderLabel(size);
+  var newSize = changeSliderLabel(size);
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    var randomPizzaContainer = document.querySelectorAll(".randomPizzaContainer");
-    function sizeSwitcher (size) {
-      switch(size) {
-        case "1":
-          return 25;
-        case "2":
-          return 33.3;
-        case "3":
-          return 50;
-        default:
-          console.log("bug in sizeSwitcher");
-      }
-    }
-    for (var i = 0; i < randomPizzaContainer.length; i++) {
-      randomPizzaContainer[i].style.width = sizeSwitcher(size) + "%";
+    //var randomPizzaContainer = document.querySelectorAll(".randomPizzaContainer");
+    //console.log(randomPizzaContainer);
+    //console.log(document.getElementsByClassName("randomPizzaContainer"));
+    var randomPizzaContainer = document.getElementsByClassName("randomPizzaContainer");
+    //console.log(randomPizzaContainer.length);
+    var count = randomPizzaContainer.length;
+    //console.log(document.querySelectorAll(".randomPizzaContainer").length);
+    for (var i = 0; i < count; i++) {
+      randomPizzaContainer[i].style.width = newSize + "%";
     }
   }
 
@@ -518,6 +512,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
+    elem.style.willChange = "transform";
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
   updatePositions();
