@@ -482,15 +482,17 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   //var items = document.querySelectorAll('.mover');
-  var scrollTop = document.body.scrollTop;
-  var phase = [];
-  for (var i = 0; i < 5; i++) {
-    phase[i] = Math.sin((scrollTop / 1250) + (i % 5));
-  }
-  for (var i = 0; i < arrayPizzas.length; i++) {
-    //var phase = Math.sin((scrollTop / 1250) + (i % 5));
-    arrayPizzas[i].style.left = arrayPizzas[i].basicLeft + 100 * phase[i%5] + 'px';
-  }
+  //function update(){
+    var scrollTop = document.body.scrollTop;
+    var phase = [];
+    for (var i = 0; i < 5; i++) {
+      phase[i] = Math.sin((scrollTop / 1250) + (i % 5)) * 100;
+    }
+    for (var i = 0; i < 24; i++) {
+      arrayPizzas[i].style.left = 256*(i%8) + phase[i%5] + 'px';
+    }
+  //}
+  //requestAnimationFrame(update);
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -517,7 +519,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    elem.style.willChange = "transform";
+    elem.style.willChange = "left";
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
   arrayPizzas = document.getElementsByClassName('mover');
