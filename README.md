@@ -1,8 +1,13 @@
 ## Website Performance Optimization portfolio project 4
+
 @author Francesco Gusella
+
 @date 30/09/2015
+
 How to get started:
+
 a - You can visit my GitHub page: http://gus42.github.io/udportfolio
+
 b - Or you can open index.html in your browser. (right-click on index.html file->open with->Chrome/Firefox/Safari)
 
 List of optimizations:
