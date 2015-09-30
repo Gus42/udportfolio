@@ -12,6 +12,9 @@ b - Or you can open index.html in your browser. (right-click on index.html file-
 
 List of optimizations:
 
+In optimized folder: you can find the minified css and js, and the index.html with css minified.
+To Optimized image and minify css,js I used photosop and Gulp(csso,autoprefixer,uglify,imagemin).
+
 index.html:
 - style.css inline and minify
 - print.css with media query "print"
