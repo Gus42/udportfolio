@@ -31,6 +31,6 @@ main.js:
 - access to scrollTop before the for () insted inside it
 - calculation of the 5 phases only one time for updatePositions()
 - main "for" of updatePositions() now have "count" iteration, and it doesn't call the DOM, to know scroll and the mover
-- delete function determineDx
+- deleted function determineDx
 - resizePizza now use size in % and not in px
 - calls to DOM are execute out from the "for"
