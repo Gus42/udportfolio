@@ -6,6 +6,7 @@ a - You can visit my GitHub page: http://gus42.github.io/udportfolio
 b - Or you can open index.html in your browser. (right-click on index.html file->open with->Chrome/Firefox/Safari)
 
 List of optimizations:
+
 index.html:
 - style.css inline and minify
 - print.css with media query "print"
