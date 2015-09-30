@@ -1,3 +1,4 @@
+"use strict";
 /*
 Welcome to the 60fps project! Your goal is to make Cam's Pizzeria website run
 jank-free at 60 frames per second.
@@ -423,13 +424,10 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    //var randomPizzaContainer = document.querySelectorAll(".randomPizzaContainer");
-    //console.log(randomPizzaContainer);
-    //console.log(document.getElementsByClassName("randomPizzaContainer"));
+    // var randomPizzaContainer is decalred outside the "for" for better performance.
+    // For the same reason it is initialized with getElementsByClassName and not query selectorAll.
     var randomPizzaContainer = document.getElementsByClassName("randomPizzaContainer");
-    //console.log(randomPizzaContainer.length);
     var count = randomPizzaContainer.length;
-    //console.log(document.querySelectorAll(".randomPizzaContainer").length);
     for (var i = 0; i < count; i++) {
       randomPizzaContainer[i].style.width = newSize + "%";
     }
@@ -447,8 +445,8 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+var pizzasDiv = document.getElementById("randomPizzas"); // DOM called one time and not 88.
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -475,24 +473,19 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 var arrayPizzas;
-
+var count;
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-
-  //var items = document.querySelectorAll('.mover');
-  //function update(){
-    var scrollTop = document.body.scrollTop;
-    var phase = [];
-    for (var i = 0; i < 5; i++) {
-      phase[i] = Math.sin((scrollTop / 1250) + (i % 5)) * 100;
-    }
-    for (var i = 0; i < 24; i++) {
-      arrayPizzas[i].style.left = 256*(i%8) + phase[i%5] + 'px';
-    }
-  //}
-  //requestAnimationFrame(update);
+  var scrollTop = document.body.scrollTop; // Read the scroll out the "for"
+  var phase = [];
+  for (var i = 0; i < 5; i++) { // A "for" to calculate just one time the 5 phases
+    phase[i] = Math.sin((scrollTop / 1250) + (i % 5)) * 100;
+  }
+  for (var i = 0; i < count; i++) { // Count is the number of pizzas created according to the screen
+    arrayPizzas[i].style.left = 256*(i%8) + phase[i%5] + 'px';
+  }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -511,18 +504,22 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 24; i++) {
-    var elem = document.createElement('img');
+  var h = window.screen.height;
+  var rows = h/s;
+  count = rows * cols; // This is the number of pizza we need to fill the sceen.
+  var elem; // declaration outside loop for better performance
+  var movingPizzas = document.getElementById('movingPizzas1'); //get elementbyID (or by Class) is better then queryselector. It's faster.
+  for (var i = 0; i < count; i++) {
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    elem.style.willChange = "left";
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    movingPizzas.appendChild(elem); // Thanks to the "out for declaration" the DOM isn't called "count" time
   }
-  arrayPizzas = document.getElementsByClassName('mover');
+  arrayPizzas = document.getElementsByClassName('mover'); // All mover saved in an array, so we don't need call the DOM for this anymore.
   updatePositions();
 });
 
