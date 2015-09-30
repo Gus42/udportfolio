@@ -429,7 +429,7 @@ var resizePizzas = function(size) {
     var randomPizzaContainer = document.getElementsByClassName("randomPizzaContainer");
     var count = randomPizzaContainer.length;
     for (var i = 0; i < count; i++) {
-      randomPizzaContainer[i].style.width = newSize + "%";
+      randomPizzaContainer[i].style.width = newSize + "%"; // % istead of px
     }
   }
 
