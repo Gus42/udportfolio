@@ -1,16 +1,17 @@
-## Website Performance Optimization portfolio project 4
+# Website Performance Optimization portfolio project 4
+date 30/09/2015
 
-@author Francesco Gusella
+Website Performance Optimization is the 4 project of Front-End Web Developer Nanodegree of [Udacity] (http://www.udacity.com).
+In this project I used the Chrome Developer Tool to see why and where the website was performing so badly.
 
-@date 30/09/2015
 
-How to get started:
+#How to get started:
 
 a - You can visit my GitHub page: http://gus42.github.io/udportfolio
 
 b - Or you can open index.html in your browser. (right-click on index.html file->open with->Chrome/Firefox/Safari)
 
-List of optimizations:
+#List of optimizations:
 
 In optimized folder: you can find the minified css and js, and the index.html with css minified.
 To Optimized image and minify css,js I used photosop and Gulp(csso,autoprefixer,uglify,imagemin).
@@ -37,3 +38,6 @@ main.js:
 - deleted function determineDx
 - resizePizza now use size in % and not in px
 - calls to DOM are execute out from the "for"
+
+Author: Francesco Gusella
+Contacts: gus815@gmail.com
