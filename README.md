@@ -1,5 +1,5 @@
 # Website Performance Optimization portfolio project 4
-date 30/09/2015
+date: 30/09/2015
 
 Website Performance Optimization is the 4 project of Front-End Web Developer Nanodegree of [Udacity] (http://www.udacity.com).
 In this project I used the Chrome Developer Tool to see why and where the website was performing so badly.
@@ -40,4 +40,5 @@ main.js:
 - calls to DOM are execute out from the "for"
 
 Author: Francesco Gusella
+
 Contacts: gus815@gmail.com
