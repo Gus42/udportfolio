@@ -1,4 +1,4 @@
-# Website Performance Optimization portfolio project 4
+# Website Performance Optimization portfolio
 date: 30/09/2015
 
 Website Performance Optimization is the 4 project of Front-End Web Developer Nanodegree of [Udacity] (http://www.udacity.com).
